@@ -1,0 +1,833 @@
+## ECS: A Programming Paradigm
+
+Azriel Hoh
+
+---
+
+### About
+
+* **Before:** Automated distributed system management.
+* **Now:** Making a Rust game.
+
++++
+
+### Agenda
+
+1. Data Organisation
+    - Hierarchical: Array of Structs
+    - Struct of Arrays
+2. Entity Component model
+3. Logic
+    - MVC
+    - Systems
+    - Dispatcher
+4. Summary
+    - Trade-offs
+
+---
+
+### Data: Hierarchical
+
+We usually define data types hierarchically:
+
+![](assets/images/data_hierarchical.dot.png)
+
++++
+
+### Data: Hierarchical
+
+In code, that looks something like this:
+
+```rust
+struct Person {
+    contact_details: ContactDetails,
+    date_of_birth: DateTime<Utc>,
+}
+
+struct ContactDetails { /* fields */ }
+struct DateTime<Tz> { /* fields */ }
+```
+
++++
+
+### Data: Hierarchical
+
+A list of people can be stored like this:
+
+```rust
+struct World {
+    people: Vec<Person>,
+}
+```
+
+This layout is known as *arrays of structs* (AOS).
+
+---
+
+### Data: Struct of Arrays
+
+Split `Person` into parts, keep the same parts together:
+
+```rust
+struct World {
+    contact_detailses: Vec<ContactDetails>,
+    date_of_births: Vec<DateTime<Utc>>,
+}
+```
+
+Each index into the `Vec<_>`s represents a person.
+
+Need to make sure `Vec<_>`s have the same length.
+
++++
+
+### Data: Struct of Arrays
+
+In picture form:
+
+![](assets/images/data_ec.dot.png)
+
+A `Person` is a vertical slice from both `Vec<_>`s.
+
+`Person` no longer exists, it's now an abstract concept.
+
++++
+
+### Data: Struct of Arrays
+
+![](assets/images/jackie_chan.png)
+
+Why would anyone want to do that?
+
+---
+
+### Calculate Average Age
+
++++
+
+Formula:
+
+```rust
+average_age = total_age / number_of_people
+```
+
+### Calculate Average Age
+
++++
+
+### Calculate Average Age
+
+```rust
+struct Person {
+    contact_details: ContactDetails,
+    date_of_birth: DateTime<Utc>,
+}
+
+let people: Vec<Person> = /* ... */;
+let now = Utc::now();
+
+let mean_age = people
+    .iter()
+    // Sum everyone's age
+    .fold(0., |sum, p| sum + ((now - p.date_of_birth).num_weeks() as f32 / 52.))
+    // Divide by number of people
+    / people.len() as f32
+```
+
++++
+
+### Memory Access
+
+Here is the data that we iterate over:
+
+<table style="font-size: 0.6em;">
+    <tr><td rowspan="3">P0</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#eecc99">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P1</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#eecc99">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P2</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#eecc99">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P3</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#eecc99">Date of Birth</td></tr>
+</table>
+
++++
+
+### Memory Access
+
+Here is the data that we need:
+
+<table style="font-size: 0.6em;">
+    <tr><td rowspan="3">P0</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#aaccff">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P1</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#aaccff">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P2</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#aaccff">Date of Birth</td></tr>
+
+    <tr><td rowspan="3">P3</td><td rowspan="2" bgcolor="#eecc99">Contact Details</td><td bgcolor="#eecc99">Address</td></tr>
+    <tr><td bgcolor="#eecc99">Phone Number</td></tr>
+    <tr><td bgcolor="#aaccff">Date of Birth</td></tr>
+</table>
+
+---
+
+### Calculate Average Age: SOA
+
+```rust
+let contact_detailses: Vec<ContactDetails> = /* ... */;
+let date_of_births: Vec<DateTime> = /* ...  */;
+let world = World { contact_detailses, date_of_births };
+
+let now = Utc::now();
+
+// Note: we don't actually read `contact_detailses`.
+let mean_age = world
+    .date_of_births
+    .iter()
+    // Sum everyone's age
+    .fold(0., |sum, date_of_birth| sum + ((now - *date_of_birth).num_weeks() as f32 / 52.))
+    // Divide by number of people
+    / world.date_of_births.len() as f32
+```
+
++++
+
+### Memory Access: SOA
+
+Here is the data that we iterate over:
+
+<table style="font-size: 0.6em;">
+    <tr><td>D0</td><td bgcolor="#eecc99">Date of Birth</td></tr>
+    <tr><td>D1</td><td bgcolor="#eecc99">Date of Birth</td></tr>
+    <tr><td>D2</td><td bgcolor="#eecc99">Date of Birth</td></tr>
+    <tr><td>D3</td><td bgcolor="#eecc99">Date of Birth</td></tr>
+</table>
+
++++
+
+### Memory Access: SOA
+
+Here is the data that we need:
+
+<table style="font-size: 0.6em;">
+    <tr><td>D0</td><td bgcolor="#aaccff">Date of Birth</td></tr>
+    <tr><td>D1</td><td bgcolor="#aaccff">Date of Birth</td></tr>
+    <tr><td>D2</td><td bgcolor="#aaccff">Date of Birth</td></tr>
+    <tr><td>D3</td><td bgcolor="#aaccff">Date of Birth</td></tr>
+</table>
+
++++
+
+### Memory Access: SOA
+
+What significance does this have?
+
+---
+
+### Caching: Data Locality
+
+When you fetch data, the computer thinks:
+
+**Maybe I should fetch more!**
+
+![](assets/images/cute_computer.png)
+
++++
+
+### Caching: Data Locality
+
+<table style="font-size: 0.6em;">
+<tr><td></td><td>Hierarchical</td><td></td><td>SOA</td></tr>
+<tr><td rowspan="10">Cache<br />Capacity</td><td rowspan="2">P0</td><td rowspan="10"></td><td>DateTime0</td></tr>
+<tr><td>DateTime1</td></tr>
+<tr><td rowspan="2">P1</td><td>DateTime2</td></tr>
+<tr><td>DateTime3</td></tr>
+<tr><td rowspan="2">P2</td><td>DateTime4</td></tr>
+<tr><td>DateTime5</td></tr>
+<tr><td rowspan="2">P3</td><td>DateTime6</td></tr>
+<tr><td>DateTime7</td></tr>
+<tr><td rowspan="2">P4</td><td>DateTime8</td></tr>
+<tr><td>DateTime9</td></tr>
+</table>
+
+---
+
+### Benchmark: AOS vs SOA
+
+<img src="assets/images/GitHub-Mark-64px.png" width="40" height="40" style="margin: 0;" /> [azriel91/aos_vs_soa/lib.rs#L112-L117](https://github.com/azriel91/aos_vs_soa/blob/master/src/lib.rs#L112-L117)
+
+```bash
+git clone git@github.com:azriel91/aos_vs_soa.git
+cd aos_vs_soa
+cargo bench
+```
+
++++
+
+### Benchmark: AOS vs SOA
+
+Sample output:
+
+```bash
+running 2 tests
+test tests::array_of_structs::avg_age ... bench:   2,427,309 ns/iter (+/- 201,343)
+test tests::struct_of_arrays::avg_age ... bench:   2,192,988 ns/iter (+/- 136,117)
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 2 measured; 0 filtered out
+```
+
++++
+
+### Benchmark: AOS vs SOA
+
+```
+name       aos ns/iter  soa ns/iter  diff ns/iter  diff %  speedup
+::avg_age  2,427,309    2,192,988        -234,321  -9.65%   x 1.11
+::avg_age  2,438,766    2,215,783        -222,983  -9.14%   x 1.10
+::avg_age  2,444,267    2,196,445        -247,822 -10.14%   x 1.11
+::avg_age  2,430,973    2,195,141        -235,832  -9.70%   x 1.11
+::avg_age  2,462,707    2,185,442        -277,265 -11.26%   x 1.13
+::avg_age  2,414,035    2,211,378        -202,657  -8.39%   x 1.09
+::avg_age  2,431,339    2,219,773        -211,566  -8.70%   x 1.10
+::avg_age  2,433,808    2,225,186        -208,622  -8.57%   x 1.09
+::avg_age  2,404,514    2,175,141        -229,373  -9.54%   x 1.11
+::avg_age  2,409,768    2,200,761        -209,007  -8.67%   x 1.09
+```
+
+---
+
+Breather
+
+---
+
+### Scenario: Game
+
+<table>
+<tr>
+    <td>
+        <b>Player</b><br/>
+        <ul>
+            <li>Render</li>
+            <li>Position</li>
+            <li>Input</li>
+        </ul>
+    </td>
+    <td>
+        <b>Monster</b><br/>
+        <ul>
+            <li>Render</li>
+            <li>Position</li>
+        </ul>
+    </td>
+</tr>
+<tr>
+    <td>
+        <b>Speech Bubble</b><br/>
+        <ul>
+            <li>Render</li>
+            <li>Input</li>
+        </ul>
+    </td>
+    <td>
+        <b>Map</b><br/>
+        <ul>
+            <li>Render</li>
+            <li>Bounds</li>
+        </ul>
+    </td>
+</tr>
+</table>
+
++++
+
+### OO Model
+
+* **G**ood **O**bject **O**riented **D**esign (GOOD)
+    - Interface inheritance
+    - Composition
+* **O**bject **O**riented **P**rogramming **S**yntax (OOPS)
+    - Implementation inheritance
+
++++
+
+### OO Model
+
+![](assets/images/game_oo_interface.dot.png)
+
++++
+
+### OO Model
+
+In code:
+
+```rust
+trait Renderable {}
+trait Position {}
+trait Input {}
+
+struct Player;
+impl Renderable for Player {}
+impl Position for Player {}
+impl Input for Player {}
+
+struct Monster;
+impl Renderable for Monster {}
+impl Position for Monster {}
+
+struct World {
+    players: Vec<Player>,
+    monsters: Vec<Monster>,
+}
+```
+
+---
+
+### EC Model
+
+Some `Component`s only apply to some entities.
+
+![](assets/images/game_entities.dot.png)
+
++++
+
+### EC Model
+
+In code, components can be represented like this:
+
+```rust
+struct World {
+    // Note: Can't simply store traits like this,
+    // In this example, components must be concrete types
+    renderables: Vec<Option<Renderable>>,
+    positions: Vec<Option<Position>>,
+    inputs: Vec<Option<Input>>,
+    bounds: Vec<Option<Bound>>,
+
+    // How to track each type of entity? `usize`!
+    players: Vec<usize>,
+    monsters: Vec<usize>,
+    speech_bubbles: Vec<usize>,
+    maps: Vec<usize>,
+}
+```
+
++++
+
+### EC Model
+
+Problem?
+
++++
+
+### EC Model
+
+More like, problems!
+
+* **Memory bloat:** Unused slots.
+* **Entity creation:** Finding a free index.
+    - **Overflow:** What if we run out of indices?
+* **Entity deletion:**
+    - **Mutable access:** Remove components from all storages.
+    - **Can we delete:** Is anyone referencing this entity?
+
+---
+
+Breather
+
+---
+
+### Generational Arena
+
++++
+
+### Generational Arena
+
+Arena? The Colosseum!
+
+![](assets/images/gladiator.jpg)
+
++++
+
+### Generational Arena
+
+**Arena:** Request a chunk of memory, and manage it yourself.
+
+**Generational:** Use a *generational index* to track free space in the arena.
+
++++
+
+### Generational Arena
+
+Key concepts:
+
+* Keep a pool of memory, remember which slots are "empty" (deleted)
+* When a slot is re-used, increment the generation by 1, so we know the memory is a different entity.
+
++++
+
+### Generational Arena
+
+Instead of:
+
+* `Vec<T>` where `T` is the stored component
+* An incrementing `usize` to track next free index
+
+Use `Vec<Entry<T>>`, where `Entry` is:
+
+```rust
+enum Entry {
+    Free { next_free: Option<usize> },
+    Occupied { generation: u64, value: T },
+}
+```
+
++++
+
+### Generational Arena
+
+Instead of referencing an entity by `usize`, use:
+
+```rust
+#[derive(Eq, PartialEq, ..)]
+pub struct GenerationalIndex {
+    index: usize,
+    generation: u64,
+}
+```
+
+If the generation does not match, it's a different entity.
+
++++
+
+### Generational Arena
+
+Solves:
+
+* **Memory bloat:** ❌ Unused slots.
+* **Entity creation:** Finding a free index.
+    - ✔️ **Overflow:** Reuse existing indicies
+* **Entity deletion:**
+    - ✔️ **Mutable access:** Old gen signals absence.
+    - ⭕ **Can we delete:** Old gen signals absence.
+
+---
+
+### EC Storages
+
++++
+
+### EC Storages
+
+`VecStorage` can be a waste of memory:
+
+![](assets/images/storage_vec_all.dot.png)
+
++++
+
+### EC Storages
+
+`Vec` is optimal for frequent components:
+
+![](assets/images/storage_vec.dot.png)
+
++++
+
+### EC Storages
+
+A lookup `Vec` saves memory for common components:
+
+![](assets/images/storage_dense_vec.dot.png)
+
++++
+
+### EC Storages
+
+Rare components can be stored using a `HashMap`:
+
+![](assets/images/storage_hash_map.dot.png)
+
++++
+
+### EC Storages
+
+Solves:
+
+* **Memory bloat:** ✔️ Unused slots.
+* **Entity creation:** Finding a free index.
+    - ✔️ **Overflow:** Reuse existing indicies
+* **Entity deletion:**
+    - ✔️ **Mutable access:** Old gen signals absence.
+    - ⭕ **Can we delete:** Old gen signals absence.
+
+---
+
+Breather
+
+---
+
+### Logic
+
++++
+
+### Task: Update Positions
+
+`Player`s and `Monster`s have a position and velocity.
+
+Write a function to update position based on velocity.
+
+```rust
+position += velocity
+```
+
++++
+
+### Logic: OO
+
+> Write the `update` function inide the `class`.  
+> Hiding the code means better encapsulation.
+>
+> &ndash; every CS course *(paraphrased)*
+
++++
+
+### Logic: OOPS
+
+How to increase software maintenance costs:
+
+```rust
+impl PositionUpdate for Player {
+    fn update(&mut self) {
+        self.pos += self.vel;
+    }
+}
+
+impl PositionUpdate for Monster {
+    fn update(&mut self) {
+        self.pos += self.vel;
+    }
+}
+```
+
++++
+
+### Logic: GOOD (MVC)
+
+```rust
+type Kinematic = i32;
+impl Positionable for Player { fn pos_mut(&mut self) -> &mut Kinematic { &mut self.pos } }
+impl Positionable for Monster { fn pos_mut(&mut self) -> &mut Kinematic { &mut self.pos } }
+impl Movable for Player { fn vel(&self) -> &Kinematic { &self.vel } }
+impl Movable for Monster { fn vel(&self) -> &Kinematic { &self.vel } }
+
+trait GameObject: Positionable + Movable {}
+fn position_update(game_objects: &mut [Box<GameObject>]) {
+    for i in 0..game_objects.len() {
+        let vel = game_objects[i].vel();
+        *game_objects[i].pos_mut() += *vel;
+    }
+}
+```
+
+<img src="assets/images/ferris.png" width="60" height="40" style="margin: 0;" /> [playpen](https://play.rust-lang.org/?version=stable&mode=debug&edition=2015&gist=f8e4a16d89d4bdd80d12095c837e5cc1)
+
++++
+
+### Logic: GOOD (MVC)
+
+* Logic is generally pretty clean
+* Difficult to update objects due to borrowing rules
+
+---
+
+### Systems
+
++++
+
+### Systems
+
+The **S** in **ECS**.
+
++++
+
+### Systems
+
+Compare:
+
+```rust
+/// OO position_update():
+for i in 0..game_objects.len() {
+    *game_objects[i].pos_mut() += *game_objects[i].vel();
+}
+
+// PositionSystem update():
+for (mut pos, vel) in (&mut positions, &vels).join() {
+    pos += vel;
+}
+```
+
++++
+
+### Systems
+
+Remember this:
+
+![](assets/images/game_entities.dot.png)
+
++++
+
+### Systems
+
+```rust
+// Whitelist components (must haves)
+(&renderables, &positions).join() -> [(R0, P0), (R1, P1)]
+```
+
+![](assets/images/join_storage.dot.png)
+
++++
+
+### Systems
+
+```rust
+// Exclude / blacklist components
+(&positions, !&inputs).join() -> [(R1, ())]
+```
+
+![](assets/images/join_storage_exclude.dot.png)
+
+---
+
+### Maze Runner
+
++++
+
+### Maze Runner
+
+You are trapped in a maze, and need to escape.
+
+There are 9 locked rooms in the maze.
+
+* You have `K` unique keys with you.
+* Each key unlocks certain rooms.
+* Each room contains a button.
+* Buttons must be pressed exactly *n* times as keys that unlock the door.
+* Some rooms can only be unlocked after completing the earlier rooms.
+
++++
+
+### Maze Runner
+
+To visualize it:
+
+<img src="assets/images/maze.png" width="479" height="400" />
+
++++
+
+### Maze Runner
+
+Given this lock:
+
+<img src="assets/images/pos_vel_lock.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+This key works:
+
+<img src="assets/images/pos_vel_key_simple.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+So does this:
+
+<img src="assets/images/pos_vel_key_extra.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+But not this:
+
+<img src="assets/images/pos_vel_key_missing.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+For this lock:
+
+<img src="assets/images/pos_notvel_lock.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+This key works:
+
+<img src="assets/images/pos_notvel_key.png" width="533" height="400" />
+
++++
+
+### Maze Runner
+
+But not this:
+
+<img src="assets/images/pos_notvel_key_simple.png" width="533" height="400" />
+
+---
+
+### Dispatcher
+
++++
+
+### Dispatcher
+
+* **Maze:** System graph
+* **Friends:** Thread pool
+* **Moment of realization:** Parallelization
+
+---
+
+### Takeaways
+
+* Compare GOOD with ECS, not OOPS with ECS
+* It's a trade-off.
+
+| OO  | EC  |
+| --- | --- |
+| Partitions by state | Partitions by behaviour |
+
+---
+
+### Thanks!
+
+* Catherine West / `@Kyrenite`: Learnt *a lot* from her blog.
+* The `specs` team: Who have written such a great library.
+* Maik Klein: For the tip about auto-vectorization.
+
+---
+
+### Links
+
+* `@Kyrenite`'s Talk: https://www.youtube.com/watch?v=P9u8x13W7UE
+* `@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html
+* Slides: https://github.com/azriel91/ecs_a_programming_paradigm
+* Specs (crate): https://crates.io/crates/specs
+* Benchmark comparison: https://github.com/azriel91/aos_vs_soa
+* Data Locality: http://gameprogrammingpatterns.com/data-locality.html

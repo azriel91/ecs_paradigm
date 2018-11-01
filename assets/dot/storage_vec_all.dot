@@ -1,0 +1,92 @@
+digraph VecAllStorage {
+    graph [
+        fontname = "Arial",
+        fontsize = 16,
+        label = <<b>VecStorage<br /><br /></b>>,
+        labelloc = top,
+        bgcolor = "transparent",
+    ];
+
+    node [
+        fillcolor = "#aaccff",
+        fontname = "consolas",
+        fontsize = 11,
+        shape = box,
+        style = filled,
+        width = 5;
+    ];
+
+    // Label definitions
+
+    renderables [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Renderables</b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99"> R0 </td>
+                <td border="1" bgcolor="#eecc99"> R1 </td>
+                <td border="1" bgcolor="#eecc99"> R2 </td>
+                <td border="1" bgcolor="#eecc99"> R3 </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    positions [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Positions  </b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99"> P0 </td>
+                <td border="1" bgcolor="#eecc99"> P1 </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    inputs [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Inputs     </b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99"> I0 </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99"> I2 </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    bounds [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Bounds     </b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99"> B4 </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    edge [style = "invis"];
+
+    renderables -> positions -> inputs -> bounds;
+}
