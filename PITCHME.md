@@ -708,35 +708,9 @@ Remember this:
 
 ![](assets/images/join_storage_exclude.dot.png)
 
----
-
-### Maze Runner
-
 +++
 
-### Maze Runner
-
-You are trapped in a maze, and need to escape.
-
-There are 9 locked rooms in the maze.
-
-* You have `K` unique keys with you.
-* Each key unlocks certain rooms.
-* Each room contains a button.
-* Buttons must be pressed exactly *n* times as keys that unlock the door.
-* Some rooms can only be unlocked after completing the earlier rooms.
-
-+++
-
-### Maze Runner
-
-To visualize it:
-
-<img src="assets/images/maze.png" width="479" height="400" />
-
-+++
-
-### Maze Runner
+### Systems
 
 Given this lock:
 
@@ -744,7 +718,7 @@ Given this lock:
 
 +++
 
-### Maze Runner
+### Systems
 
 This key works:
 
@@ -752,7 +726,7 @@ This key works:
 
 +++
 
-### Maze Runner
+### Systems
 
 So does this:
 
@@ -760,7 +734,7 @@ So does this:
 
 +++
 
-### Maze Runner
+### Systems
 
 But not this:
 
@@ -768,7 +742,7 @@ But not this:
 
 +++
 
-### Maze Runner
+### Systems
 
 For this lock:
 
@@ -776,7 +750,7 @@ For this lock:
 
 +++
 
-### Maze Runner
+### Systems
 
 This key works:
 
@@ -784,7 +758,7 @@ This key works:
 
 +++
 
-### Maze Runner
+### Systems
 
 But not this:
 
@@ -798,9 +772,10 @@ But not this:
 
 ### Dispatcher
 
-* **Maze:** System graph
-* **Friends:** Thread pool
-* **Moment of realization:** Parallelization
+* System dependency graph
+* Thread pool
+* Parallel execution
+* Safe: multiple readers / exclusive writer
 
 ---
 
