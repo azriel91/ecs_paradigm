@@ -708,9 +708,9 @@ Remember this:
 
 ![](assets/images/join_storage_exclude.dot.png)
 
-+++
+---
 
-### Systems
+### Lock & Key Analogy
 
 Given this lock:
 
@@ -718,7 +718,7 @@ Given this lock:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 This key works:
 
@@ -726,7 +726,7 @@ This key works:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 So does this:
 
@@ -734,7 +734,7 @@ So does this:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 But not this:
 
@@ -742,7 +742,7 @@ But not this:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 For this lock:
 
@@ -750,7 +750,7 @@ For this lock:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 This key works:
 
@@ -758,7 +758,7 @@ This key works:
 
 +++
 
-### Systems
+### Lock & Key Analogy
 
 But not this:
 
