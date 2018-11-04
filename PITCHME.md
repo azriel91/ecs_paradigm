@@ -30,74 +30,9 @@ Azriel Hoh
 
 We usually define data types hierarchically:
 
-<svg width="362pt" height="309pt"
- viewBox="0.00 0.00 362.00 309.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 305)">
-<title>Person</title>
-<text text-anchor="start" x="64.5" y="-285.2" font-family="Arial" font-weight="bold" font-size="16.00">Hierarchical data organization</text>
-<!-- address -->
-<g id="node1" class="node"><title>address</title>
-<polygon fill="#bbddff" stroke="black" points="113,-52 0,-52 0,-0 113,-0 113,-52"/>
-<text text-anchor="start" x="8" y="-40.2" font-family="consolas" font-weight="bold" font-size="11.00">Address</text>
-<text text-anchor="start" x="8" y="-29.2" font-family="consolas" font-size="11.00">country: Country</text>
-<text text-anchor="start" x="8" y="-18.2" font-family="consolas" font-size="11.00">state: State</text>
-<text text-anchor="start" x="8" y="-7.2" font-family="consolas" font-size="11.00">city: String</text>
-</g>
-<!-- contact_details -->
-<g id="node2" class="node"><title>contact_details</title>
-<polygon fill="#bbddff" stroke="black" points="211,-156.5 44,-156.5 44,-115.5 211,-115.5 211,-156.5"/>
-<text text-anchor="start" x="52" y="-144.7" font-family="consolas" font-weight="bold" font-size="11.00">ContactDetails</text>
-<text text-anchor="start" x="52" y="-133.7" font-family="consolas" font-size="11.00">address: Address</text>
-<text text-anchor="start" x="52" y="-122.7" font-family="consolas" font-size="11.00">phone_number: PhoneNumber</text>
-</g>
-<!-- contact_details&#45;&gt;address -->
-<g id="edge3" class="edge"><title>contact_details&#45;&gt;address</title>
-<path fill="none" stroke="black" d="M114.642,-115.442C104.615,-100.188 90.4499,-78.6421 78.6122,-60.6354"/>
-<polygon fill="black" stroke="black" points="81.4342,-58.5566 73.0162,-52.1232 75.5849,-62.4019 81.4342,-58.5566"/>
-</g>
-<!-- phone_number -->
-<g id="node5" class="node"><title>phone_number</title>
-<polygon fill="#bbddff" stroke="black" points="268,-46.5 131,-46.5 131,-5.5 268,-5.5 268,-46.5"/>
-<text text-anchor="start" x="139" y="-34.7" font-family="consolas" font-weight="bold" font-size="11.00">PhoneNumber</text>
-<text text-anchor="start" x="139" y="-23.7" font-family="consolas" font-size="11.00">country_code: String</text>
-<text text-anchor="start" x="139" y="-12.7" font-family="consolas" font-size="11.00">area_code: String</text>
-</g>
-<!-- contact_details&#45;&gt;phone_number -->
-<g id="edge4" class="edge"><title>contact_details&#45;&gt;phone_number</title>
-<path fill="none" stroke="black" d="M140.539,-115.442C151.733,-98.6498 168.012,-74.2313 180.63,-55.3045"/>
-<polygon fill="black" stroke="black" points="183.68,-57.0394 186.315,-46.7774 177.856,-53.1565 183.68,-57.0394"/>
-</g>
-<!-- date_time -->
-<g id="node3" class="node"><title>date_time</title>
-<polygon fill="#bbddff" stroke="black" points="354,-184 229,-184 229,-88 354,-88 354,-184"/>
-<text text-anchor="start" x="237" y="-172.2" font-family="consolas" font-weight="bold" font-size="11.00">DateTime</text>
-<text text-anchor="start" x="237" y="-161.2" font-family="consolas" font-size="11.00">year: u64</text>
-<text text-anchor="start" x="237" y="-150.2" font-family="consolas" font-size="11.00">month: u64</text>
-<text text-anchor="start" x="237" y="-139.2" font-family="consolas" font-size="11.00">day: u64</text>
-<text text-anchor="start" x="237" y="-128.2" font-family="consolas" font-size="11.00">hours: u64</text>
-<text text-anchor="start" x="237" y="-117.2" font-family="consolas" font-size="11.00">minutes: u64</text>
-<text text-anchor="start" x="237" y="-106.2" font-family="consolas" font-size="11.00">seconds: u64</text>
-<text text-anchor="start" x="237" y="-95.2" font-family="consolas" font-size="11.00">timezone: TimeZone</text>
-</g>
-<!-- person -->
-<g id="node4" class="node"><title>person</title>
-<polygon fill="#bbddff" stroke="black" points="311,-261 108,-261 108,-220 311,-220 311,-261"/>
-<text text-anchor="start" x="116" y="-249.2" font-family="consolas" font-weight="bold" font-size="11.00">Person</text>
-<text text-anchor="start" x="116" y="-238.2" font-family="consolas" font-size="11.00">contact_details: ContactDetails</text>
-<text text-anchor="start" x="116" y="-227.2" font-family="consolas" font-size="11.00">date_of_birth: DateTime</text>
-</g>
-<!-- person&#45;&gt;contact_details -->
-<g id="edge1" class="edge"><title>person&#45;&gt;contact_details</title>
-<path fill="none" stroke="black" d="M193.69,-219.737C181.211,-204.139 163.65,-182.188 149.752,-164.815"/>
-<polygon fill="black" stroke="black" points="152.242,-162.325 143.262,-156.702 146.776,-166.698 152.242,-162.325"/>
-</g>
-<!-- person&#45;&gt;date_time -->
-<g id="edge2" class="edge"><title>person&#45;&gt;date_time</title>
-<path fill="none" stroke="black" d="M225.31,-219.737C231.7,-211.75 239.423,-202.097 247.303,-192.246"/>
-<polygon fill="black" stroke="black" points="250.121,-194.326 253.635,-184.331 244.655,-189.953 250.121,-194.326"/>
-</g>
-</g>
-</svg>
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/data_hierarchical.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -152,7 +87,9 @@ Need to make sure `Vec<_>`s have the same length.
 
 In picture form:
 
-<img src="assets/images/data_ec.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/data_ec.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 A `Person` is a vertical slice from both `Vec<_>`s.
 
@@ -432,7 +369,9 @@ Breather
 
 ### OO Model
 
-<img src="assets/images/game_oo_interface.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_oo_interface.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -466,7 +405,9 @@ struct World {
 
 Some `Component`s only apply to some entities.
 
-<img src="assets/images/game_entities.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_entities.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -600,7 +541,9 @@ Solves:
 
 `VecStorage` can be a waste of memory:
 
-<img src="assets/images/storage_vec_all.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_vec_all.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -608,7 +551,9 @@ Solves:
 
 `Vec` is optimal for frequent components:
 
-<img src="assets/images/storage_vec.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_vec.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -616,7 +561,9 @@ Solves:
 
 A lookup `Vec` saves memory for common components:
 
-<img src="assets/images/storage_dense_vec.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_dense_vec.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -624,7 +571,9 @@ A lookup `Vec` saves memory for common components:
 
 Rare components can be stored using a `HashMap`:
 
-<img src="assets/images/storage_hash_map.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_hash_map.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -751,7 +700,9 @@ for (mut pos, vel) in (&mut positions, &vels).join() {
 
 Remember this:
 
-<img src="assets/images/game_entities.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_entities.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -762,7 +713,9 @@ Remember this:
 (&renderables, &positions).join() -> [(R0, P0), (R1, P1)]
 ```
 
-<img src="assets/images/join_storage.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/join_storage.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 +++
 
@@ -773,7 +726,9 @@ Remember this:
 (&positions, !&inputs).join() -> [(R1, ())]
 ```
 
-<img src="assets/images/join_storage_exclude.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/join_storage_exclude.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 ---
 
@@ -849,7 +804,9 @@ But not this:
 
 ### Dispatcher: System Graph
 
-<img src="assets/images/dispatcher_graph.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/dispatcher_graph.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 <img src="assets/images/GitHub-Mark-64px.png" width="40" height="40" style="margin: 0;" /> [specs/examples/full.rs#L221-L230](https://github.com/slide-rs/specs/blob/b22955b6487b53c22117a77cd93ee2ad78e31711/examples/full.rs#L221-L230)
 
@@ -857,7 +814,9 @@ But not this:
 
 ### Dispatcher: Thread Pool
 
-<img src="assets/images/dispatcher_thread_pool.dot.svg" />
+<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/dispatcher_thread_pool.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 ---
 
