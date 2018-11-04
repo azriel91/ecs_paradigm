@@ -612,7 +612,7 @@ position += velocity
 
 ### Logic: OO
 
-> Write the `update` function inide the `class`.  
+> Write the `update` function inside the `class`.  
 > Hiding the code means better encapsulation.
 >
 > &ndash; every CS course *(paraphrased)*
@@ -832,8 +832,7 @@ But not this:
 | Optimized for cache usage<sup>1</sup> |       | ✔️ |
 | Borrow-checker management<sup>2</sup> |       | ✔️ |
 
-<sup>1</sup> Only because Rust doesn't do auto-vectorization.
-
+<sup>1</sup> Only because Rust doesn't do auto-vectorization.  
 <sup>2</sup> Ease of passing data for parallelization
 
 ---
