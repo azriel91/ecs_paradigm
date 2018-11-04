@@ -710,7 +710,7 @@ Remember this:
 
 ```rust
 // Whitelist components (must haves)
-(&renderables, &positions).join() -> [(R0, P0), (R1, P1)]
+(&renderables, &positions).join() -> [(R0, P0), (R1, P1)] // player, monster
 ```
 
 <img src="https://azriel.im/ecs_paradigm/assets/images/join_storage.dot.svg" />
@@ -723,7 +723,7 @@ Remember this:
 
 ```rust
 // Exclude / blacklist components
-(&positions, !&inputs).join() -> [(R1, ())]
+(&positions, !&inputs).join() -> [(P1, ())] // monster
 ```
 
 <img src="https://azriel.im/ecs_paradigm/assets/images/join_storage_exclude.dot.svg" />
