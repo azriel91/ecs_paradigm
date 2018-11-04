@@ -33,31 +33,31 @@ digraph Dispatcher {
     subgraph cluster_systems {
         bgm [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b><font color="#af00af">C0</font> Bgm</b></td></tr>
+                <tr><td align="left"><b><font color="#af00af">C0</font> 🎶 Bgm</b></td></tr>
             </table>>,
         ];
 
         input_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>InputUpdate</b></td></tr>
+                <tr><td align="left"><b>⌨️ InputUpdate</b></td></tr>
             </table>>,
         ];
 
         speech_bubble_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b><font color="#af00af">C1</font> SpeechBubbleUpdate</b></td></tr>
+                <tr><td align="left"><b><font color="#af00af">C1</font> 💬 SpeechBubbleUpdate</b></td></tr>
             </table>>,
         ];
 
         velocity_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b><font color="#af00af">C2</font> VelocityUpdate</b></td></tr>
+                <tr><td align="left"><b><font color="#af00af">C2</font> 🌠 VelocityUpdate</b></td></tr>
             </table>>,
         ];
 
         position_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>PositionUpdate</b></td></tr>
+                <tr><td align="left"><b>🛰️ PositionUpdate</b></td></tr>
             </table>>,
         ];
 

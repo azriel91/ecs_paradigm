@@ -21,7 +21,7 @@ digraph Dispatcher {
     subgraph cluster_systems {
         bgm [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>BgmSystem</b></td></tr>
+                <tr><td align="left"><b>🎶 BgmSystem</b></td></tr>
                 <tr cellspacing="0"><td align="left">Write&lt;'s, Bgm&gt;,</td></tr>
                 <tr cellspacing="0"><td align="left">&nbsp;</td></tr>
             </table>>,
@@ -30,7 +30,7 @@ digraph Dispatcher {
 
         input_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>InputUpdateSystem</b></td></tr>
+                <tr><td align="left"><b>⌨️ InputUpdateSystem</b></td></tr>
                 <tr cellspacing="0"><td align="left">Read&lt;'s, EventChannel&lt;KeyEvent&gt;&gt;,</td></tr>
                 <tr cellspacing="0"><td align="left">WriteStorage&lt;'s, Input&gt;,</td></tr>
             </table>>,
@@ -38,7 +38,7 @@ digraph Dispatcher {
 
         speech_bubble_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>SpeechBubbleUpdateSystem</b></td></tr>
+                <tr><td align="left"><b>💬 SpeechBubbleUpdateSystem</b></td></tr>
                 <tr cellspacing="0"><td align="left">ReadStorage&lt;'s, Input&gt;,</td></tr>
                 <tr cellspacing="0"><td align="left">WriteStorage&lt;'s, SpeechBubble&gt;,</td></tr>
             </table>>,
@@ -46,7 +46,7 @@ digraph Dispatcher {
 
         velocity_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>VelocityUpdateSystem</b></td></tr>
+                <tr><td align="left"><b>🌠 VelocityUpdateSystem</b></td></tr>
                 <tr cellspacing="0"><td align="left">ReadStorage&lt;'s, Input&gt;,</td></tr>
                 <tr cellspacing="0"><td align="left">WriteStorage&lt;'s, Velocity&gt;,</td></tr>
             </table>>,
@@ -54,7 +54,7 @@ digraph Dispatcher {
 
         position_update [
             label = <<table border="0" cellborder="0">
-                <tr><td align="left"><b>PositionUpdateSystem</b></td></tr>
+                <tr><td align="left"><b>🛰️ PositionUpdateSystem</b></td></tr>
                 <tr cellspacing="0"><td align="left">ReadStorage&lt;'s, Velocity&gt;,</td></tr>
                 <tr cellspacing="0"><td align="left">WriteStorage&lt;'s, Position&gt;,</td></tr>
             </table>>,
