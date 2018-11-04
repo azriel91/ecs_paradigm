@@ -30,7 +30,7 @@ Azriel Hoh
 
 We usually define data types hierarchically:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/data_hierarchical.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/data_hierarchical.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -87,7 +87,7 @@ Need to make sure `Vec<_>`s have the same length.
 
 In picture form:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/data_ec.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/data_ec.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -369,7 +369,7 @@ Breather
 
 ### OO Model
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_oo_interface.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/game_oo_interface.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -405,7 +405,7 @@ struct World {
 
 Some `Component`s only apply to some entities.
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_entities.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/game_entities.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -541,7 +541,7 @@ Solves:
 
 `VecStorage` can be a waste of memory:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_vec_all.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/storage_vec_all.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -551,7 +551,7 @@ Solves:
 
 `Vec` is optimal for frequent components:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_vec.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/storage_vec.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -561,7 +561,7 @@ Solves:
 
 A lookup `Vec` saves memory for common components:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_dense_vec.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/storage_dense_vec.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -571,7 +571,7 @@ A lookup `Vec` saves memory for common components:
 
 Rare components can be stored using a `HashMap`:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/storage_hash_map.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/storage_hash_map.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -700,7 +700,7 @@ for (mut pos, vel) in (&mut positions, &vels).join() {
 
 Remember this:
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/game_entities.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/game_entities.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -713,7 +713,7 @@ Remember this:
 (&renderables, &positions).join() -> [(R0, P0), (R1, P1)]
 ```
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/join_storage.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -726,7 +726,7 @@ Remember this:
 (&positions, !&inputs).join() -> [(R1, ())]
 ```
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/join_storage_exclude.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage_exclude.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -804,7 +804,7 @@ But not this:
 
 ### Dispatcher: System Graph
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/dispatcher_graph.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/dispatcher_graph.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -814,7 +814,7 @@ But not this:
 
 ### Dispatcher: Thread Pool
 
-<img src="https://raw.githubusercontent.com/azriel91/ecs_a_programming_paradigm/master/assets/images/dispatcher_thread_pool.dot.svg" />
+<img src="https://azriel.im/ecs_paradigm/assets/images/dispatcher_thread_pool.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
@@ -847,7 +847,7 @@ But not this:
 
 ### Links
 
-* Slides: https://github.com/azriel91/ecs_a_programming_paradigm
+* Slides: https://github.com/azriel91/ecs_paradigm
 * RustConf 2018 Closing Keynote: https://www.youtube.com/watch?v=P9u8x13W7UE
 * `@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html
 * `specs` (crate): https://crates.io/crates/specs
