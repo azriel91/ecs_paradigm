@@ -30,7 +30,7 @@ Azriel Hoh
 
 We usually define data types hierarchically:
 
-![](assets/images/data_hierarchical.dot.svg)
+<img src="assets/images/data_hierarchical.dot.svg" height="400" />
 
 +++
 
@@ -85,7 +85,7 @@ Need to make sure `Vec<_>`s have the same length.
 
 In picture form:
 
-![](assets/images/data_ec.dot.svg)
+<img src="assets/images/data_ec.dot.svg" height="400" />
 
 A `Person` is a vertical slice from both `Vec<_>`s.
 
@@ -365,7 +365,7 @@ Breather
 
 ### OO Model
 
-![](assets/images/game_oo_interface.dot.svg)
+<img src="assets/images/game_oo_interface.dot.svg" height="400" />
 
 +++
 
@@ -399,7 +399,7 @@ struct World {
 
 Some `Component`s only apply to some entities.
 
-![](assets/images/game_entities.dot.svg)
+<img src="assets/images/game_entities.dot.svg" height="400" />
 
 +++
 
@@ -533,7 +533,7 @@ Solves:
 
 `VecStorage` can be a waste of memory:
 
-![](assets/images/storage_vec_all.dot.svg)
+<img src="assets/images/storage_vec_all.dot.svg" height="400" />
 
 +++
 
@@ -541,7 +541,7 @@ Solves:
 
 `Vec` is optimal for frequent components:
 
-![](assets/images/storage_vec.dot.svg)
+<img src="assets/images/storage_vec.dot.svg" height="400" />
 
 +++
 
@@ -549,7 +549,7 @@ Solves:
 
 A lookup `Vec` saves memory for common components:
 
-![](assets/images/storage_dense_vec.dot.svg)
+<img src="assets/images/storage_dense_vec.dot.svg" height="400" />
 
 +++
 
@@ -557,7 +557,7 @@ A lookup `Vec` saves memory for common components:
 
 Rare components can be stored using a `HashMap`:
 
-![](assets/images/storage_hash_map.dot.svg)
+<img src="assets/images/storage_hash_map.dot.svg" height="400" />
 
 +++
 
@@ -684,7 +684,7 @@ for (mut pos, vel) in (&mut positions, &vels).join() {
 
 Remember this:
 
-![](assets/images/game_entities.dot.svg)
+<img src="assets/images/game_entities.dot.svg" height="400" />
 
 +++
 
@@ -695,7 +695,7 @@ Remember this:
 (&renderables, &positions).join() -> [(R0, P0), (R1, P1)]
 ```
 
-![](assets/images/join_storage.dot.svg)
+<img src="assets/images/join_storage.dot.svg" height="400" />
 
 +++
 
@@ -706,7 +706,7 @@ Remember this:
 (&positions, !&inputs).join() -> [(R1, ())]
 ```
 
-![](assets/images/join_storage_exclude.dot.svg)
+<img src="assets/images/join_storage_exclude.dot.svg" height="400" />
 
 ---
 
@@ -782,7 +782,7 @@ But not this:
 
 ### Dispatcher: System Graph
 
-![](assets/images/dispatcher_graph.dot.svg)
+<img src="assets/images/dispatcher_graph.dot.svg" height="400" />
 
 <img src="assets/images/GitHub-Mark-64px.png" width="40" height="40" style="margin: 0;" /> [specs/examples/full.rs#L221-L230](https://github.com/slide-rs/specs/blob/b22955b6487b53c22117a77cd93ee2ad78e31711/examples/full.rs#L221-L230)
 
@@ -790,7 +790,7 @@ But not this:
 
 ### Dispatcher: Thread Pool
 
-![](assets/images/dispatcher_thread_pool.dot.svg)
+<img src="assets/images/dispatcher_thread_pool.dot.svg" height="400" />
 
 ---
 
