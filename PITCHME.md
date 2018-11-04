@@ -833,6 +833,7 @@ But not this:
 | Borrow-checker management<sup>2</sup> |       | ✔️ |
 
 <sup>1</sup> Only because Rust doesn't do auto-vectorization.
+
 <sup>2</sup> Ease of passing data for parallelization
 
 ---
