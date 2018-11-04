@@ -105,13 +105,13 @@ Why would anyone want to do that?
 
 +++
 
+### Calculate Average Age
+
 Formula:
 
 ```rust
 average_age = total_age / number_of_people
 ```
-
-### Calculate Average Age
 
 +++
 
@@ -129,7 +129,7 @@ let now = Utc::now();
 let mean_age = people
     .iter()
     // Sum everyone's age
-    .fold(0., |sum, p| sum + ((now - p.date_of_birth).num_weeks() as f32 / 52.))
+    .fold(0., |sum, p| sum + years_since(p.date_of_birth, now))
     // Divide by number of people
     / people.len() as f32
 ```
@@ -198,7 +198,7 @@ let mean_age = world
     .date_of_births
     .iter()
     // Sum everyone's age
-    .fold(0., |sum, date_of_birth| sum + ((now - *date_of_birth).num_weeks() as f32 / 52.))
+    .fold(0., |sum, dob| sum + years_since(*dob, now))
     // Divide by number of people
     / world.date_of_births.len() as f32
 ```
@@ -772,10 +772,25 @@ But not this:
 
 ### Dispatcher
 
-* System dependency graph
+* System graph
 * Thread pool
-* Parallel execution
-* Safe: multiple readers / exclusive writer
+* Execution
+    - Parallel
+    - Safe: multiple readers / exclusive writer
+
++++
+
+### Dispatcher: System Graph
+
+![](assets/images/dispatcher_graph.dot.png)
+
+<img src="assets/images/GitHub-Mark-64px.png" width="40" height="40" style="margin: 0;" /> [specs/examples/full.rs#L221-L230](https://github.com/slide-rs/specs/blob/b22955b6487b53c22117a77cd93ee2ad78e31711/examples/full.rs#L221-L230)
+
++++
+
+### Dispatcher: Thread Pool
+
+![](assets/images/dispatcher_thread_pool.dot.png)
 
 ---
 
@@ -784,9 +799,15 @@ But not this:
 * Compare GOOD with ECS, not OOPS with ECS
 * It's a trade-off.
 
-| OO  | EC  |
-| --- | --- |
-| Partitions by state | Partitions by behaviour |
+|     | OO  | EC  |
+| --- | --- | --- |
+| Logical partitioning                  | State | Behaviour |
+| Visible concrete model                |  ✔️  |     |
+| Optimized for cache usage<sup>1</sup> |       | ✔️ |
+| Borrow-checker management<sup>2</sup> |       | ✔️ |
+
+<sup>1</sup> Only because Rust doesn't do auto-vectorization.
+<sup>2</sup> Ease of passing data for parallelization
 
 ---
 
@@ -800,9 +821,9 @@ But not this:
 
 ### Links
 
-* `@Kyrenite`'s Talk: https://www.youtube.com/watch?v=P9u8x13W7UE
-* `@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html
 * Slides: https://github.com/azriel91/ecs_a_programming_paradigm
-* Specs (crate): https://crates.io/crates/specs
+* RustConf 2018 Closing Keynote: https://www.youtube.com/watch?v=P9u8x13W7UE
+* `@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html
+* `specs` (crate): https://crates.io/crates/specs
 * Benchmark comparison: https://github.com/azriel91/aos_vs_soa
 * Data Locality: http://gameprogrammingpatterns.com/data-locality.html
