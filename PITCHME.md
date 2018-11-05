@@ -496,7 +496,7 @@ Instead of:
 Use `Vec<Entry<T>>`, where `Entry` is:
 
 ```rust
-enum Entry {
+enum Entry<T> {
     Free { next_free: Option<usize> },
     Occupied { generation: u64, value: T },
 }
