@@ -399,6 +399,19 @@ struct World {
 }
 ```
 
++++
+
+### OO Model
+
+Problems:
+
+* Development overhead for common logic.
+* Borrowing parts of an object.
+    - `Arc<Mutex<_>>`
+    - `Copy` / `Clone`
+    - Deconstruct / Reconstruct
+    - "View" structs
+
 ---
 
 ### EC Model
@@ -516,7 +529,8 @@ pub struct GenerationalIndex {
 }
 ```
 
-If the generation does not match, it's a different entity.
+If the generation does not match, it's a different entity.  
+Note: *index* type is twice as big, but generally smaller than `Component`
 
 +++
 
