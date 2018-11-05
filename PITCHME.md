@@ -692,60 +692,6 @@ The **S** in **ECS**.
 
 +++
 
-### Systems
-
-Compare:
-
-```rust
-/// OO position_update():
-for i in 0..game_objects.len() {
-    *game_objects[i].pos_mut() += *game_objects[i].vel();
-}
-
-// PositionSystem update():
-for (mut pos, vel) in (&mut positions, &vels).join() {
-    pos += vel;
-}
-```
-
-+++
-
-### Systems
-
-Remember this:
-
-<img src="https://azriel.im/ecs_paradigm/assets/images/game_entities.dot.svg" />
-
-<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
-
-+++
-
-### Systems
-
-```rust
-// Whitelist components (must haves)
-(&renderables, &positions).join() -> [(R0, P0), (R1, P1)] // player, monster
-```
-
-<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage.dot.svg" />
-
-<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
-
-+++
-
-### Systems
-
-```rust
-// Exclude / blacklist components
-(&positions, !&inputs).join() -> [(P1, ())] // monster
-```
-
-<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage_exclude.dot.svg" />
-
-<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
-
----
-
 ### Lock & Key Analogy
 
 Given this lock:
@@ -799,6 +745,60 @@ This key works:
 But not this:
 
 <img src="assets/images/pos_notvel_key_simple.png" width="533" height="400" />
+
+---
+
+### Systems
+
+Compare:
+
+```rust
+/// OO position_update():
+for i in 0..game_objects.len() {
+    *game_objects[i].pos_mut() += *game_objects[i].vel();
+}
+
+// PositionSystem update():
+for (mut pos, vel) in (&mut positions, &vels).join() {
+    pos += vel;
+}
+```
+
++++
+
+### Systems
+
+Remember this:
+
+<img src="https://azriel.im/ecs_paradigm/assets/images/game_entities.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
+
++++
+
+### Systems
+
+```rust
+// Whitelist components (must haves)
+(&renderables, &positions).join() -> [(R0, P0), (R1, P1)] // player, monster
+```
+
+<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
+
++++
+
+### Systems
+
+```rust
+// Exclude / blacklist components
+(&positions, !&inputs).join() -> [(P1, ())] // monster
+```
+
+<img src="https://azriel.im/ecs_paradigm/assets/images/join_storage_exclude.dot.svg" />
+
+<!-- https://github.com/gitpitch/gitpitch/issues/95 -->
 
 ---
 
