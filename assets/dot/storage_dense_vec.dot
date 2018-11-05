@@ -5,6 +5,8 @@ digraph DenseVecStorage {
         label = <<b>DenseVecStorage<br /><br /></b>>,
         labelloc = top,
         bgcolor = "transparent",
+        nodesep = 0,
+        ranksep = 0,
     ];
 
     node [
@@ -34,8 +36,36 @@ digraph DenseVecStorage {
             </tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99" colspan="2"> P0 </td>
-                <td border="1" bgcolor="#eecc99" colspan="2"> P1 </td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;P0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;P1&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
+                <td style="invis">    </td>
+                <td style="invis">    </td>
+                <td style="invis">    </td>
+                <td style="invis">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    velocities [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Velocities  </b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">lookup: </td>
+                <td border="1" bgcolor="#eecc99">0</td>
+                <td border="1" bgcolor="#eecc99">1</td>
+                <td border="1" bgcolor="#eecc99" style="dashed"></td>
+                <td border="1" bgcolor="#eecc99" style="dashed"></td>
+                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+            </tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;V0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;V1&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
                 <td style="invis">    </td>
@@ -52,18 +82,18 @@ digraph DenseVecStorage {
             <tr cellspacing="0">
                 <td align="left">lookup: </td>
                 <td border="1" bgcolor="#eecc99">0</td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
                 <td border="1" bgcolor="#eecc99">1</td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" style="dotted"></td>
                 <td border="1" bgcolor="#dddddd" style="dotted"></td>
                 <td border="1" bgcolor="#dddddd" style="dotted"></td>
             </tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99" colspan="2"> I0 </td>
-                <td border="1" bgcolor="#eecc99" colspan="2"> I2 </td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;I0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;I2&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
                 <td style="invis">    </td>
@@ -76,5 +106,5 @@ digraph DenseVecStorage {
 
     edge [style = "invis"];
 
-    positions -> inputs;
+    positions -> velocities -> inputs;
 }

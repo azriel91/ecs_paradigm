@@ -24,7 +24,7 @@ digraph HashMapStorage {
             <tr cellspacing="0">
                 <td align="left">key/data: </td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td border="1" bgcolor="#eecc99" colspan="2"> 4:B4 </td>
+                <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;4:B4&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
                 <td style="invis">    </td>
                 <td style="invis">    </td>

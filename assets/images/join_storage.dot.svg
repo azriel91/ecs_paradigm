@@ -12,6 +12,10 @@
 <polygon fill="#f5f5f5" stroke="black" points="8,-8 8,-255 734,-255 734,-8 8,-8"/>
 <text text-anchor="start" x="348" y="-239.2" font-family="consolas" font-weight="bold" font-size="16.00">World</text>
 </g>
+<g id="clust7" class="cluster"><title>cluster_Map</title>
+<polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="602,-16 602,-174 726,-174 726,-16 602,-16"/>
+<text text-anchor="start" x="610" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Map</text>
+</g>
 <g id="clust6" class="cluster"><title>cluster_SpeechBubble</title>
 <polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="470,-16 470,-174 594,-174 594,-16 470,-16"/>
 <text text-anchor="start" x="478" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Speech Bubble</text>
@@ -20,16 +24,12 @@
 <polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="338,-16 338,-174 462,-174 462,-16 338,-16"/>
 <text text-anchor="start" x="346" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Monster</text>
 </g>
-<g id="clust3" class="cluster"><title>cluster_Storages</title>
-<polygon fill="#f5f5f5" stroke="none" points="16,-16 16,-153 198,-153 198,-16 16,-16"/>
-</g>
 <g id="clust4" class="cluster"><title>cluster_Player</title>
 <polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="206,-16 206,-174 330,-174 330,-16 206,-16"/>
 <text text-anchor="start" x="214" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Player</text>
 </g>
-<g id="clust7" class="cluster"><title>cluster_Map</title>
-<polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="602,-16 602,-174 726,-174 726,-16 602,-16"/>
-<text text-anchor="start" x="610" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Map</text>
+<g id="clust3" class="cluster"><title>cluster_Storages</title>
+<polygon fill="#f5f5f5" stroke="none" points="16,-16 16,-153 198,-153 198,-16 16,-16"/>
 </g>
 <!-- storage_0 -->
 <g id="node1" class="node"><title>storage_0</title>
@@ -46,7 +46,7 @@
 <path fill="none" stroke="#0000af" d="M107,-98.731C107,-89.6003 107,-79.4239 107,-70.2915"/>
 <polygon fill="#0000af" stroke="#0000af" points="107,-108.802 102.5,-98.8023 107,-103.802 107,-98.8023 107,-98.8023 107,-98.8023 107,-103.802 111.5,-98.8024 107,-108.802 107,-108.802"/>
 <polygon fill="#0000af" stroke="#0000af" points="107,-60.1756 111.5,-70.1756 107,-65.1756 107,-70.1756 107,-70.1756 107,-70.1756 107,-65.1756 102.5,-70.1757 107,-60.1756 107,-60.1756"/>
-<text text-anchor="start" x="107" y="-82.4" font-family="consolas" font-weight="bold" font-size="12.00"> join()</text>
+<text text-anchor="start" x="107" y="-82.4" font-family="consolas" font-weight="bold" font-size="12.00"> &#160;join()</text>
 </g>
 <!-- player_render -->
 <g id="node3" class="node"><title>player_render</title>

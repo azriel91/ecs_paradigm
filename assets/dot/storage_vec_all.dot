@@ -5,6 +5,8 @@ digraph VecAllStorage {
         label = <<b>VecStorage<br /><br /></b>>,
         labelloc = top,
         bgcolor = "transparent",
+        nodesep = 0,
+        ranksep = 0,
     ];
 
     node [
@@ -23,10 +25,10 @@ digraph VecAllStorage {
             <tr><td align="left"><b>Renderables</b></td></tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99"> R0 </td>
-                <td border="1" bgcolor="#eecc99"> R1 </td>
-                <td border="1" bgcolor="#eecc99"> R2 </td>
-                <td border="1" bgcolor="#eecc99"> R3 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R1&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R2&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R3&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
@@ -40,8 +42,25 @@ digraph VecAllStorage {
             <tr><td align="left"><b>Positions  </b></td></tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99"> P0 </td>
-                <td border="1" bgcolor="#eecc99"> P1 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;P0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;P1&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#eecc99" style="dashed">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+                <td border="1" bgcolor="#dddddd" style="dotted">    </td>
+            </tr>
+        </table>>,
+    ];
+
+    velocities [
+        label = <<table border="0" cellborder="0">
+            <tr><td align="left"><b>Velocities  </b></td></tr>
+            <tr cellspacing="0">
+                <td align="left">data: </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;V0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;V1&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
@@ -57,9 +76,9 @@ digraph VecAllStorage {
             <tr><td align="left"><b>Inputs     </b></td></tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99"> I0 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;I0&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
-                <td border="1" bgcolor="#eecc99"> I2 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;I2&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
@@ -77,7 +96,7 @@ digraph VecAllStorage {
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
                 <td border="1" bgcolor="#eecc99" style="dashed">    </td>
-                <td border="1" bgcolor="#eecc99"> B4 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;B4&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
@@ -88,5 +107,5 @@ digraph VecAllStorage {
 
     edge [style = "invis"];
 
-    renderables -> positions -> inputs -> bounds;
+    renderables -> positions -> velocities -> inputs -> bounds;
 }

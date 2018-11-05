@@ -7,6 +7,8 @@ digraph World {
         fontsize = 16;
         label = <<b>World<br /></b>>;
         labelloc = top;
+        nodesep = 0;
+        ranksep = 0;
 
         node [
             fillcolor = "#bbddff",
@@ -17,9 +19,7 @@ digraph World {
             width = 1.5,
         ];
 
-        edge [
-            style = invis,
-        ];
+        edge [style = invis];
 
         subgraph cluster_Storages {
             pencolor = transparent;
@@ -32,12 +32,13 @@ digraph World {
                 fontsize = 13,
             ];
 
-            storage_0 [label = <<b>Render Storage</b>>];
-            storage_1 [label = <<b>Position Storage</b>>];
-            storage_2 [label = <<b>Input Storage</b>>];
-            storage_3 [label = <<b>Bounds Storage</b>>];
+            storage_render [label = <<b>Render Storage</b>>];
+            storage_position [label = <<b>Position Storage</b>>];
+            storage_velocity [label = <<b>Velocity Storage</b>>];
+            storage_input [label = <<b>Input Storage</b>>];
+            storage_bounds [label = <<b>Bounds Storage</b>>];
 
-            storage_0 -> storage_1 -> storage_2 -> storage_3;
+            storage_render -> storage_position -> storage_velocity -> storage_input -> storage_bounds;
         };
 
         subgraph cluster_Player {
@@ -50,10 +51,11 @@ digraph World {
 
             player_render [label = "Render"];
             player_position [label = "Position"];
+            player_velocity [label = "Velocity"];
             player_input [label = "Input"];
-            player_0 [label = "", style = dashed];
+            player_bounds [label = "", style = dashed];
 
-            player_render -> player_position -> player_input -> player_0;
+            player_render -> player_position -> player_velocity -> player_input -> player_bounds;
         };
 
         subgraph cluster_Monster {
@@ -66,10 +68,11 @@ digraph World {
 
             monster_render [label = "Render"];
             monster_position [label = "Position"];
-            monster_0 [label = "", style = dashed];
-            monster_1 [label = "", style = dashed];
+            monster_velocity [label = "Velocity"];
+            monster_input [label = "", style = dashed];
+            monster_bounds [label = "", style = dashed];
 
-            monster_render -> monster_position -> monster_0 -> monster_1;
+            monster_render -> monster_position -> monster_velocity -> monster_input -> monster_bounds;
         };
 
         subgraph cluster_SpeechBubble {
@@ -81,11 +84,12 @@ digraph World {
             style = dotted;
 
             speech_bubble_render [label = "Render"];
-            speech_bubble_0 [label = "", style = dashed];
+            speech_bubble_position [label = "", style = dashed];
+            speech_bubble_velocity [label = "", style = dashed];
             speech_bubble_input [label = "Input"];
-            speech_bubble_1 [label = "", style = dashed];
+            speech_bubble_bounds [label = "", style = dashed];
 
-            speech_bubble_render -> speech_bubble_0 -> speech_bubble_input -> speech_bubble_1;
+            speech_bubble_render -> speech_bubble_position -> speech_bubble_velocity -> speech_bubble_input -> speech_bubble_bounds;
         };
 
         subgraph cluster_Map {
@@ -97,15 +101,16 @@ digraph World {
             style = dotted;
 
             map_render [label = "Render"];
-            map_0 [label = "", style = dashed];
-            map_1 [label = "", style = dashed];
+            map_position [label = "", style = dashed];
+            map_velocity [label = "", style = dashed];
+            map_input [label = "", style = dashed];
             map_bounds [label = "Bounds"];
 
-            map_render -> map_0 -> map_1 -> map_bounds;
+            map_render -> map_position -> map_velocity -> map_input -> map_bounds;
         };
 
-        top [style = invis, width = 0, height = 0];
-        top -> storage_0;
+        top [style = "invis", width = 0, height = 0];
+        top -> storage_render;
         top -> player_render;
         top -> monster_render;
         top -> speech_bubble_render;

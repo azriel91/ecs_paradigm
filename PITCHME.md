@@ -326,6 +326,7 @@ Breather
         <ul>
             <li>Render</li>
             <li>Position</li>
+            <li>Velocity</li>
             <li>Input</li>
         </ul>
     </td>
@@ -334,6 +335,7 @@ Breather
         <ul>
             <li>Render</li>
             <li>Position</li>
+            <li>Velocity</li>
         </ul>
     </td>
 </tr>
@@ -381,17 +383,20 @@ In code:
 
 ```rust
 trait Renderable {}
-trait Position {}
-trait Input {}
+trait Positionable {}
+trait Movable {}
+trait InputControlled {}
 
 struct Player;
 impl Renderable for Player {}
-impl Position for Player {}
-impl Input for Player {}
+impl Positionable for Player {}
+impl Movable for Player {}
+impl InputControlled for Player {}
 
 struct Monster;
 impl Renderable for Monster {}
-impl Position for Monster {}
+impl Positionable for Monster {}
+impl Movable for Monster {}
 
 struct World {
     players: Vec<Player>,
@@ -434,6 +439,7 @@ struct World {
     // In this example, components must be concrete types
     renderables: Vec<Option<Renderable>>,
     positions: Vec<Option<Position>>,
+    velocities: Vec<Option<Velocity>>,
     inputs: Vec<Option<Input>>,
     bounds: Vec<Option<Bound>>,
 
@@ -758,7 +764,7 @@ for i in 0..game_objects.len() {
     *game_objects[i].pos_mut() += *game_objects[i].vel();
 }
 
-// PositionSystem update():
+// PositionUpdateSystem run():
 for (mut pos, vel) in (&mut positions, &velocities).join() {
     pos += vel;
 }
@@ -896,7 +902,7 @@ What it is:
 | Optimized for cache usage<sup>1</sup> |       | ✔️ |
 | Borrow-checker management<sup>2</sup> |       | ✔️ |
 
-<sup>1</sup> Rust doesn't auto-vectorize floats well, also see [`soa-derive`](https://github.com/lumol-org/soa-derive) crate.  
+<sup>1</sup> Rust doesn't auto-vectorize floats well, also see .  
 <sup>2</sup> Ease of passing data for parallelization
 
 ---
@@ -915,10 +921,10 @@ What it is:
 
 ### Links
 
-* Slides: https://github.com/azriel91/ecs_paradigm
-* RustConf 2018 Closing Keynote: https://www.youtube.com/watch?v=P9u8x13W7UE
-* `@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html
-* `specs` (crate): https://crates.io/crates/specs
-* Benchmark comparison: https://github.com/azriel91/aos_vs_soa
-* Data Locality: http://gameprogrammingpatterns.com/data-locality.html
-* Component Graph System (CGS): https://github.com/kvark/froggy/wiki/Component-Graph-System
+* @size[0.7em](Slides: https://github.com/azriel91/ecs_paradigm)
+* @size[0.7em](RustConf 2018 Closing Keynote: https://www.youtube.com/watch?v=P9u8x13W7UE)
+* @size[0.7em](`@Kyrenite`'s Blog: https://kyren.github.io/2018/09/14/rustconf-talk.html)
+* @size[0.7em](`specs`: https://crates.io/crates/specs)
+* @size[0.7em](`soa-derive`: https://github.com/lumol-org/soa-derive)
+* @size[0.7em](Benchmark comparison: https://github.com/azriel91/aos_vs_soa)
+* @size[0.7em](Component Graph System: https://github.com/kvark/froggy/wiki/Component-Graph-System)

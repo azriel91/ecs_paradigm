@@ -53,10 +53,10 @@ digraph World {
                     arrowtail = "vee",
                 ];
 
-                storage_1 [label = <<b>Position Storage</b>>];
-                storage_2 [label = <<b>!Input Storage</b>>];
+                storage_position [label = <<b>Position Storage</b>>];
+                storage_input [label = <<b>!Input Storage</b>>];
 
-                storage_1 -> storage_2 [label = <<b> join()</b>>];
+                storage_position -> storage_input [label = <<b>  join()</b>>];
             };
 
             subgraph cluster_Player {
@@ -67,10 +67,10 @@ digraph World {
                 labeljust = l;
                 style = dotted;
 
-                edge [color = "#af0000"];
+                edge [color = "#af0000", style = "dotted"];
 
                 player_position [label = "P0"];
-                player_input [label = "I0"];
+                player_input [label = "V0"];
 
                 player_position -> player_input;
             };
@@ -100,7 +100,7 @@ digraph World {
                 edge [color = "#af0000", style = "dotted"];
 
                 speech_bubble_position [label = "", style = dashed];
-                speech_bubble_input [label = "Input"];
+                speech_bubble_input [label = "I2"];
 
                 speech_bubble_position -> speech_bubble_input;
             };
@@ -124,7 +124,7 @@ digraph World {
         }
 
         top [style = invis, width = 0, height = 0];
-        top -> storage_1;
+        top -> storage_position;
         top -> player_position;
         top -> monster_position;
         top -> speech_bubble_position;

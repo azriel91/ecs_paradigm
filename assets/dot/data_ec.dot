@@ -20,11 +20,11 @@ digraph World {
     world [
         label = <<table border="0" cellborder="0">
             <tr><td align="left"><b>World</b></td></tr>
-            <tr cellspacing="0"><td align="left">contact_detailses: </td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#aaccff" rowspan="4"></td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td></tr>
-            <tr cellspacing="0"><td align="left">date_of_births   : </td><td border="1" bgcolor="#eecc99"></td>                                                  <td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td><td border="1" bgcolor="#eecc99"></td></tr>
+            <tr cellspacing="0"><td align="left">contact_details: </td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#aaccff" rowspan="4">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td></tr>
+            <tr cellspacing="0"><td align="left">date_of_births : </td><td border="1" bgcolor="#eecc99">&nbsp;</td>                                                        <td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td><td border="1" bgcolor="#eecc99">&nbsp;</td></tr>
             <tr cellspacing="0"><td></td></tr>
             <tr cellspacing="0"><td></td></tr>
-            <tr cellspacing="0"><td colspan="6" align="right"><font face="Arial" point-size="10"><b>Person</b></font></td></tr>
+            <tr cellspacing="0"><td colspan="4" align="right"><font face="Arial" point-size="10"><b>Person</b></font></td></tr>
         </table>>,
     ];
 }

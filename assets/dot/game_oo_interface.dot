@@ -21,17 +21,15 @@ digraph InterfaceInheritance {
     subgraph cluster_interfaces {
         pencolor = transparent;
         label = "";
-        // rank = same;
 
         node [fillcolor = "#ffee77"];
         edge [style = "invis"];
 
         renderable [label = <<b>Renderable</b><br align="left"/>>];
-        position [label = <<b>Position</b><br align="left"/>>];
-        input [label = <<b>Input</b><br align="left"/>>];
-        bounds [label = <<b>Bounds</b><br align="left"/>>];
-
-        // renderable -> position -> input -> bounds;
+        position [label = <<b>Positionable</b><br align="left"/>>];
+        velocity [label = <<b>Movable</b><br align="left"/>>];
+        input [label = <<b>InputControlled</b><br align="left"/>>];
+        bounds [label = <<b>Bounded</b><br align="left"/>>];
     }
 
     player [label = <<b>Player</b><br align="left"/>>];
@@ -41,27 +39,35 @@ digraph InterfaceInheritance {
 
     // Label links
 
-    edge [dir = "back", arrowtail = "empty"];
+    edge [dir = "back", arrowtail = "empty", style = "dashed"];
 
     renderable -> player;
     position -> player;
+    velocity -> player;
     input -> player;
 
-    subgraph GreyedOut {
-        edge [color = "#0000004f"];
+    subgraph cluster_non_player {
+        label = "";
+        pencolor = "transparent";
 
-        renderable -> monster;
-        position -> monster;
+        subgraph GreyedOut {
+            edge [color = "#0000003f"];
 
-        renderable -> speech_bubble;
-        input -> speech_bubble;
+            renderable -> monster;
+            position -> monster;
+            velocity -> monster;
+
+            renderable -> speech_bubble;
+            input -> speech_bubble;
+        }
+
+        subgraph DarkRed {
+            edge [color = "#880000"];
+
+            renderable -> map;
+            bounds -> map;
+        }
     }
 
-    subgraph DarkRed {
-        edge [color = "#880000"];
-
-        renderable -> map;
-        bounds -> map;
-    }
 
 }

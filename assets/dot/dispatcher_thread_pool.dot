@@ -4,6 +4,8 @@ digraph Dispatcher {
         fontsize = 16,
         labelloc = top,
         bgcolor = "transparent",
+        nodesep = 0.1,
+        ranksep = 0,
     ];
 
     node [

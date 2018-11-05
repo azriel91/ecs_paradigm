@@ -23,10 +23,10 @@ digraph VecStorage {
             <tr><td align="left"><b>Renderables</b></td></tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
-                <td border="1" bgcolor="#eecc99"> R0 </td>
-                <td border="1" bgcolor="#eecc99"> R1 </td>
-                <td border="1" bgcolor="#eecc99"> R2 </td>
-                <td border="1" bgcolor="#eecc99"> R3 </td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R0&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R1&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R2&nbsp;</td>
+                <td border="1" bgcolor="#eecc99">&nbsp;R3&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>
                 <td border="1" bgcolor="#dddddd" style="dotted">    </td>

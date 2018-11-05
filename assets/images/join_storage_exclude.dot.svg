@@ -12,6 +12,10 @@
 <polygon fill="#f5f5f5" stroke="black" points="8,-8 8,-255 734,-255 734,-8 8,-8"/>
 <text text-anchor="start" x="348" y="-239.2" font-family="consolas" font-weight="bold" font-size="16.00">World</text>
 </g>
+<g id="clust7" class="cluster"><title>cluster_Map</title>
+<polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="602,-16 602,-174 726,-174 726,-16 602,-16"/>
+<text text-anchor="start" x="610" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Map</text>
+</g>
 <g id="clust6" class="cluster"><title>cluster_SpeechBubble</title>
 <polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="470,-16 470,-174 594,-174 594,-16 470,-16"/>
 <text text-anchor="start" x="478" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Speech Bubble</text>
@@ -27,26 +31,22 @@
 <g id="clust3" class="cluster"><title>cluster_Storages</title>
 <polygon fill="#f5f5f5" stroke="none" points="16,-16 16,-153 198,-153 198,-16 16,-16"/>
 </g>
-<g id="clust7" class="cluster"><title>cluster_Map</title>
-<polygon fill="#f5f5f5" stroke="black" stroke-dasharray="1,5" points="602,-16 602,-174 726,-174 726,-16 602,-16"/>
-<text text-anchor="start" x="610" y="-161.4" font-family="consolas" font-weight="bold" font-size="12.00">Map</text>
-</g>
-<!-- storage_1 -->
-<g id="node1" class="node"><title>storage_1</title>
+<!-- storage_position -->
+<g id="node1" class="node"><title>storage_position</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="190,-145 24,-145 24,-109 190,-109 190,-145"/>
 <text text-anchor="start" x="52.5" y="-124.6" font-family="consolas" font-weight="bold" font-size="13.00">Position Storage</text>
 </g>
-<!-- storage_2 -->
-<g id="node2" class="node"><title>storage_2</title>
+<!-- storage_input -->
+<g id="node2" class="node"><title>storage_input</title>
 <polygon fill="none" stroke="black" stroke-width="0" points="190,-60 24,-60 24,-24 190,-24 190,-60"/>
 <text text-anchor="start" x="59.5" y="-39.6" font-family="consolas" font-weight="bold" font-size="13.00">!Input Storage</text>
 </g>
-<!-- storage_1&#45;&gt;storage_2 -->
-<g id="edge1" class="edge"><title>storage_1&#45;&gt;storage_2</title>
+<!-- storage_position&#45;&gt;storage_input -->
+<g id="edge1" class="edge"><title>storage_position&#45;&gt;storage_input</title>
 <path fill="none" stroke="#0000af" d="M107,-98.731C107,-89.6003 107,-79.4239 107,-70.2915"/>
 <polygon fill="#0000af" stroke="#0000af" points="107,-108.802 102.5,-98.8023 107,-103.802 107,-98.8023 107,-98.8023 107,-98.8023 107,-103.802 111.5,-98.8024 107,-108.802 107,-108.802"/>
 <polygon fill="#0000af" stroke="#0000af" points="107,-60.1756 111.5,-70.1756 107,-65.1756 107,-70.1756 107,-70.1756 107,-70.1756 107,-65.1756 102.5,-70.1757 107,-60.1756 107,-60.1756"/>
-<text text-anchor="start" x="107" y="-82.4" font-family="consolas" font-weight="bold" font-size="12.00"> join()</text>
+<text text-anchor="start" x="107" y="-82.4" font-family="consolas" font-weight="bold" font-size="12.00"> &#160;join()</text>
 </g>
 <!-- player_position -->
 <g id="node3" class="node"><title>player_position</title>
@@ -56,11 +56,11 @@
 <!-- player_input -->
 <g id="node4" class="node"><title>player_input</title>
 <polygon fill="#bbddff" stroke="black" points="322,-60 214,-60 214,-24 322,-24 322,-60"/>
-<text text-anchor="middle" x="268" y="-39.2" font-family="consolas" font-size="11.00">I0</text>
+<text text-anchor="middle" x="268" y="-39.2" font-family="consolas" font-size="11.00">V0</text>
 </g>
 <!-- player_position&#45;&gt;player_input -->
 <g id="edge2" class="edge"><title>player_position&#45;&gt;player_input</title>
-<path fill="none" stroke="#af0000" d="M268,-98.731C268,-89.6003 268,-79.4239 268,-70.2915"/>
+<path fill="none" stroke="#af0000" stroke-dasharray="1,5" d="M268,-98.731C268,-89.6003 268,-79.4239 268,-70.2915"/>
 <polygon fill="#af0000" stroke="#af0000" points="268,-108.802 263.5,-98.8023 268,-103.802 268,-98.8023 268,-98.8023 268,-98.8023 268,-103.802 272.5,-98.8024 268,-108.802 268,-108.802"/>
 <polygon fill="#af0000" stroke="#af0000" points="268,-60.1756 272.5,-70.1756 268,-65.1756 268,-70.1756 268,-70.1756 268,-70.1756 268,-65.1756 263.5,-70.1757 268,-60.1756 268,-60.1756"/>
 </g>
@@ -86,7 +86,7 @@
 <!-- speech_bubble_input -->
 <g id="node8" class="node"><title>speech_bubble_input</title>
 <polygon fill="#bbddff" stroke="black" points="586,-60 478,-60 478,-24 586,-24 586,-60"/>
-<text text-anchor="middle" x="532" y="-39.2" font-family="consolas" font-size="11.00">Input</text>
+<text text-anchor="middle" x="532" y="-39.2" font-family="consolas" font-size="11.00">I2</text>
 </g>
 <!-- speech_bubble_position&#45;&gt;speech_bubble_input -->
 <g id="edge4" class="edge"><title>speech_bubble_position&#45;&gt;speech_bubble_input</title>
@@ -109,7 +109,7 @@
 <polygon fill="#af0000" stroke="#af0000" points="664,-60.1756 668.5,-70.1756 664,-65.1756 664,-70.1756 664,-70.1756 664,-70.1756 664,-65.1756 659.5,-70.1757 664,-60.1756 664,-60.1756"/>
 </g>
 <!-- top -->
-<!-- top&#45;&gt;storage_1 -->
+<!-- top&#45;&gt;storage_position -->
 <!-- top&#45;&gt;player_position -->
 <!-- top&#45;&gt;monster_position -->
 <!-- top&#45;&gt;speech_bubble_position -->

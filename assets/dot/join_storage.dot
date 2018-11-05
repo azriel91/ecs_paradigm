@@ -57,7 +57,7 @@ digraph World {
                 storage_0 [label = <<b>Render Storage</b>>];
                 storage_1 [label = <<b>Position Storage</b>>];
 
-                storage_0 -> storage_1 [label = <<b> join()</b>>];
+                storage_0 -> storage_1 [label = <<b>  join()</b>>];
             };
 
             subgraph cluster_Player {
