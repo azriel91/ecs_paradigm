@@ -759,7 +759,7 @@ for i in 0..game_objects.len() {
 }
 
 // PositionSystem update():
-for (mut pos, vel) in (&mut positions, &vels).join() {
+for (mut pos, vel) in (&mut positions, &velocities).join() {
     pos += vel;
 }
 ```
@@ -802,11 +802,61 @@ Remember this:
 
 ---
 
+### Breather
+
+---
+
+### System Data
+
++++
+
+### System Data
+
+Systems operate over data.  
+We call that `SystemData`.
+
+`SystemData` looks like this:
+
+```rust
+/// Systems operate on resources that are borrowed from the `World`.
+/// This is the lifetime that those references live for.
+///
+/// => The resources must live for at least as long as `'s`.
+type PositionUpdateSystemData<'s> = (
+    WriteStorage<'s, Position>,
+    ReadStorage<'s, Velocity>,
+);
+```
+
++++
+
+### System Data
+
+And is used like this:
+
+```rust
+struct PositionUpdateSystem;
+impl System<'s> for PositionUpdateSystem {
+    type SystemData = PositionUpdateSystemData<'s>;
+
+    fn run(&mut self, (mut positions, velocities): Self::SystemData) {
+        // Here is the system logic!
+        for (mut pos, vel) in (&mut positions, &velocities).join() {
+            pos += vel;
+        }
+    }
+}
+```
+
+---
+
 ### Dispatcher
 
 +++
 
 ### Dispatcher
+
+What it is:
 
 * System graph
 * Thread pool
@@ -834,7 +884,7 @@ Remember this:
 
 ---
 
-### Takeaways
+### Summary
 
 * Compare GOOD with ECS, not OOPS with ECS
 * It's a trade-off.
@@ -848,6 +898,10 @@ Remember this:
 
 <sup>1</sup> Rust doesn't auto-vectorize floats well, also see [`soa-derive`](https://github.com/lumol-org/soa-derive) crate.  
 <sup>2</sup> Ease of passing data for parallelization
+
+---
+
+### Questions, Answers and Comments
 
 ---
 
@@ -867,3 +921,4 @@ Remember this:
 * `specs` (crate): https://crates.io/crates/specs
 * Benchmark comparison: https://github.com/azriel91/aos_vs_soa
 * Data Locality: http://gameprogrammingpatterns.com/data-locality.html
+* Component Graph System (CGS): https://github.com/kvark/froggy/wiki/Component-Graph-System
