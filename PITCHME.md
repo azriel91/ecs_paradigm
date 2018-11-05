@@ -72,7 +72,7 @@ Split `Person` into parts, keep the same parts together:
 
 ```rust
 struct World {
-    contact_detailses: Vec<ContactDetails>,
+    contact_details: Vec<ContactDetails>,
     date_of_births: Vec<DateTime<Utc>>,
 }
 ```
@@ -191,13 +191,13 @@ Here is the data that we need:
 ### Calculate Average Age: SOA
 
 ```rust
-let contact_detailses: Vec<ContactDetails> = /* ... */;
+let contact_details: Vec<ContactDetails> = /* ... */;
 let date_of_births: Vec<DateTime> = /* ...  */;
-let world = World { contact_detailses, date_of_births };
+let world = World { contact_details, date_of_births };
 
 let now = Utc::now();
 
-// Note: we don't actually read `contact_detailses`.
+// Note: we don't actually read `contact_details`.
 let mean_age = world
     .date_of_births
     .iter()
