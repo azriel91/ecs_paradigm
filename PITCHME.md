@@ -915,7 +915,8 @@ What it is:
 
 * Catherine West / `@Kyrenite`: Learnt *a lot* from her blog.
 * The `specs` team: Who have written such a great library.
-* Maik Klein: For the tip about auto-vectorization.
+* Maik Klein: For expanding my knowledge on auto-vectorization.
+* `@medusacle`: For much feedback on improving these slides.
 
 ---
 
