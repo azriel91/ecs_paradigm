@@ -319,6 +319,20 @@ Breather
 
 ### Scenario: Game
 
++++
+
+### Scenario: Game
+
+**Disclaimer**
+
+> These examples are based on the `specs` crate. There
+> are many other ECS implementations, whether in Rust or
+> other languages.
+
++++
+
+### Scenario: Game
+
 <table>
 <tr>
     <td>
@@ -498,6 +512,23 @@ Arena? The Colosseum!
 
 ### Generational Arena
 
+Instead of referencing an entity by `usize`, use:
+
+```rust
+#[derive(Eq, PartialEq, ..)]
+pub struct GenerationalIndex {
+    index: usize,
+    generation: u64,
+}
+```
+
+If the generation does not match, it's a different entity.  
+Note: *index* type is twice as big, but generally smaller than `Component`
+
++++
+
+### Generational Arena
+
 Key concepts:
 
 * Keep a pool of memory, remember which slots are "empty" (deleted)
@@ -525,18 +556,19 @@ enum Entry<T> {
 
 ### Generational Arena
 
-Instead of referencing an entity by `usize`, use:
+<img src="https://azriel.im/ecs_paradigm/assets/images/generational_arena.dot.svg" />
 
-```rust
-#[derive(Eq, PartialEq, ..)]
-pub struct GenerationalIndex {
-    index: usize,
-    generation: u64,
-}
-```
++++
 
-If the generation does not match, it's a different entity.  
-Note: *index* type is twice as big, but generally smaller than `Component`
+### Generational Arena
+
+<img src="https://azriel.im/ecs_paradigm/assets/images/generational_arena_filled.dot.svg" />
+
++++
+
+### Generational Arena
+
+<img src="https://azriel.im/ecs_paradigm/assets/images/generational_arena_remove_1.dot.svg" />
 
 +++
 
