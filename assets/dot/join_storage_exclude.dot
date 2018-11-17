@@ -70,7 +70,7 @@ digraph World {
                 edge [color = "#af0000", style = "dotted"];
 
                 player_position [label = "P0"];
-                player_input [label = "V0"];
+                player_input [label = "I0"];
 
                 player_position -> player_input;
             };
