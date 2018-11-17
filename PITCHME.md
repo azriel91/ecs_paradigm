@@ -788,24 +788,6 @@ But not this:
 
 ### Systems
 
-Compare:
-
-```rust
-/// OO position_update():
-for i in 0..game_objects.len() {
-    *game_objects[i].pos_mut() += *game_objects[i].vel();
-}
-
-// PositionUpdateSystem run():
-for (mut pos, vel) in (&mut positions, &velocities).join() {
-    pos += vel;
-}
-```
-
-+++
-
-### Systems
-
 Remember this:
 
 <img src="https://azriel.im/ecs_paradigm/assets/images/game_entities.dot.svg" />
@@ -837,6 +819,24 @@ Remember this:
 <img src="https://azriel.im/ecs_paradigm/assets/images/join_storage_exclude.dot.svg" />
 
 <!-- https://github.com/gitpitch/gitpitch/issues/95 -->
+
++++
+
+### Systems
+
+Compare:
+
+```rust
+/// OO position_update():
+for i in 0..game_objects.len() {
+    *game_objects[i].pos_mut() += *game_objects[i].vel();
+}
+
+// PositionUpdateSystem run():
+for (mut pos, vel) in (&mut positions, &velocities).join() {
+    pos += vel;
+}
+```
 
 ---
 
