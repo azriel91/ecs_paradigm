@@ -14,19 +14,26 @@ Azriel Hoh
 ### Agenda
 
 1. Data Organisation
-    - Hierarchical: Array of Structs
-    - Struct of Arrays
-2. Entity Component model
-3. Logic
+    - OO: Array of Structs
+    - EC: Struct of Arrays
+2. Game Scenario
+3. Patterns
+    - Generational Arena
+    - Storages
+4. Logic
     - MVC
     - Systems
     - Dispatcher
-4. Summary
+5. Summary
     - Trade-offs
 
 ---
 
-### Data: Hierarchical
+### Data: OO
+
++++
+
+### Data: OO
 
 We usually define data types hierarchically:
 
@@ -36,7 +43,7 @@ We usually define data types hierarchically:
 
 +++
 
-### Data: Hierarchical
+### Data: OO
 
 In code, that looks something like this:
 
@@ -52,7 +59,7 @@ struct DateTime<Tz> { /* fields */ }
 
 +++
 
-### Data: Hierarchical
+### Data: OO
 
 A list of people can be stored like this:
 
@@ -62,9 +69,16 @@ struct World {
 }
 ```
 
-This layout is known as *arrays of structs* (AOS).
+This layout is:
+
+* Hierarchical.
+* Coined *arrays of structs* (AOS).
 
 ---
+
+### Data: Struct of Arrays
+
++++
 
 ### Data: Struct of Arrays
 
@@ -237,11 +251,15 @@ Here is the data that we need:
 
 ### Memory Access: SOA
 
-What significance does this have?
+Should I care?
 
 ---
 
-### Caching: Data Locality
+### Data Locality
+
++++
+
+### Data Locality
 
 When you fetch data, the computer thinks:
 
@@ -251,7 +269,7 @@ When you fetch data, the computer thinks:
 
 +++
 
-### Caching: Data Locality
+### Data Locality
 
 <table style="font-size: 0.6em;">
 <tr><td></td><td>Hierarchical</td><td></td><td>SOA</td></tr>
@@ -313,7 +331,7 @@ name       aos ns/iter  soa ns/iter  diff ns/iter  diff %  speedup
 
 ---
 
-Breather
+### Breather
 
 ---
 
@@ -486,7 +504,7 @@ More like, problems!
 
 ---
 
-Breather
+### Breather
 
 ---
 
@@ -642,7 +660,7 @@ Solves:
 
 ---
 
-Breather
+### Breather
 
 ---
 
@@ -667,7 +685,7 @@ position += velocity
 > Write the `update` function inside the `class`.  
 > Hiding the code means better encapsulation.
 >
-> &ndash; every CS course *(paraphrased)*
+> &ndash; every CS course *(how we heard it)*
 
 +++
 
@@ -701,6 +719,7 @@ impl Movable for Player { fn vel(&self) -> &Kinematic { &self.vel } }
 impl Movable for Monster { fn vel(&self) -> &Kinematic { &self.vel } }
 
 trait GameObject: Positionable + Movable {}
+
 fn position_update(game_objects: &mut [Box<GameObject>]) {
     for i in 0..game_objects.len() {
         let vel = game_objects[i].vel();
@@ -715,8 +734,15 @@ fn position_update(game_objects: &mut [Box<GameObject>]) {
 
 ### Logic: GOOD (MVC)
 
-* Logic is generally pretty clean
-* Difficult to update objects due to borrowing rules
+* Logic is generally pretty clean.
+* Difficult to update objects due to borrowing rules.
+
+    Choose from:
+
+    - `Arc<Mutex<_>>`
+    - View structs &ndash; `&field`.
+    - Deconstruct, reconstruct.
+    - ...
 
 ---
 
@@ -833,8 +859,8 @@ for i in 0..game_objects.len() {
 }
 
 // PositionUpdateSystem run():
-for (mut pos, vel) in (&mut positions, &velocities).join() {
-    pos += vel;
+for (pos, vel) in (&mut positions, &velocities).join() {
+    *pos += *vel;
 }
 ```
 
@@ -874,13 +900,19 @@ And is used like this:
 
 ```rust
 struct PositionUpdateSystem;
+
+type PositionUpdateSystemData<'s> = (
+    WriteStorage<'s, Position>,
+    ReadStorage<'s, Velocity>,
+);
+
 impl System<'s> for PositionUpdateSystem {
     type SystemData = PositionUpdateSystemData<'s>;
 
     fn run(&mut self, (mut positions, velocities): Self::SystemData) {
         // Here is the system logic!
-        for (mut pos, vel) in (&mut positions, &velocities).join() {
-            pos += vel;
+        for (pos, vel) in (&mut positions, &velocities).join() {
+            *pos += *vel;
         }
     }
 }
@@ -934,7 +966,7 @@ What it is:
 | Optimized for cache usage<sup>1</sup> |       | ✔️ |
 | Borrow-checker management<sup>2</sup> |       | ✔️ |
 
-<sup>1</sup> Rust doesn't auto-vectorize floats well, also see .  
+<sup>1</sup> Rust doesn't auto-vectorize floats well.  
 <sup>2</sup> Ease of passing data for parallelization
 
 ---
