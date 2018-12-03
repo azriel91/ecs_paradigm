@@ -27,23 +27,27 @@ digraph DenseVecStorage {
                 <td align="left">lookup: </td>
                 <td border="1" bgcolor="#eecc99">0</td>
                 <td border="1" bgcolor="#eecc99">1</td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
             </tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;P0&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;P1&nbsp;</td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">   </td>
             </tr>
         </table>>,
     ];
@@ -55,23 +59,27 @@ digraph DenseVecStorage {
                 <td align="left">lookup: </td>
                 <td border="1" bgcolor="#eecc99">0</td>
                 <td border="1" bgcolor="#eecc99">1</td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
-                <td border="1" bgcolor="#eecc99" style="dashed"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
             </tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;V0&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;V1&nbsp;</td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">   </td>
             </tr>
         </table>>,
     ];
@@ -85,21 +93,25 @@ digraph DenseVecStorage {
                 <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
                 <td border="1" bgcolor="#eecc99">1</td>
                 <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
+                <td border="1" bgcolor="#eecc99" style="dashed">&nbsp;</td>
                 <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
-                <td border="1" bgcolor="#dddddd" style="dotted"></td>
+                <td border="1" bgcolor="#dddddd" style="dotted">&nbsp;</td>
             </tr>
             <tr cellspacing="0">
                 <td align="left">data: </td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;I0&nbsp;</td>
                 <td border="1" bgcolor="#eecc99" colspan="2">&nbsp;I2&nbsp;</td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td border="1" bgcolor="#dddddd" colspan="2" style="dotted">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
-                <td style="invis">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">    </td>
+                <td style="invis" colspan="2">   </td>
             </tr>
         </table>>,
     ];
