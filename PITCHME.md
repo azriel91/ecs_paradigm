@@ -549,8 +549,9 @@ Note: *index* type is twice as big, but generally smaller than `Component`
 
 Key concepts:
 
-* Keep a pool of memory, remember which slots are "empty" (deleted)
-* When a slot is re-used, increment the generation by 1, so we know the memory is a different entity.
+* Keep a pool of memory, remember which slots are "empty"
+* Track a generation number used when inserting data.
+* When freeing a slot, ensure the generation is at least one more than the generation of the freed slot.
 
 +++
 
